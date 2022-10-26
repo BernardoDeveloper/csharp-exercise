@@ -1,5 +1,3 @@
-using System;
-
 static class QuestLogic
 {
     public static bool CanFastAttack(bool knightIsAwake)
@@ -44,9 +42,20 @@ static class QuestLogic
     public static bool CanFreePrisoner(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake, bool petDogIsPresent)
     {
         // throw new NotImplementedException("Please implement the (static) QuestLogic.CanFreePrisoner() method");
-        bool guard = !knightIsAwake || !archerIsAwake;
 
-        if (petDogIsPresent && prisonerIsAwake && guard)
+        if (petDogIsPresent && !archerIsAwake && prisonerIsAwake)
+        {
+            return true;
+        }
+        else if (!petDogIsPresent && prisonerIsAwake && !archerIsAwake && !knightIsAwake)
+        {
+            return true;
+        }
+        else if (petDogIsPresent && !prisonerIsAwake && !archerIsAwake && !knightIsAwake)
+        {
+            return true;
+        }
+        else if (petDogIsPresent && knightIsAwake && !prisonerIsAwake && !archerIsAwake)
         {
             return true;
         }
